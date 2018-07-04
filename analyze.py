@@ -41,9 +41,15 @@ def main():
 
     ax = plt.subplot()
 
-    # created = [x for x in created if (datetime.datetime.now() - created[x] < datetime.timedelta(hours=12))]
+    # Only show submissions created after a certain time ago
+    # ago = datetime.timedelta(hours=20)
+    # created = [x for x in created if (created[x] + ago > datetime.datetime.now())]
 
-    print(len(created))
+    # Only show submissions created since we started logging
+    beginning_of_log = min([x[0] for x in seen_times.values()])
+    created = [x for x in created if (created[x] > beginning_of_log)]
+
+    print(f"After filtering, {len(created)} will be displayed")
 
     for id in created:
         plt.plot_date(seen_times[id], seen_ups[id], xdate=True, ls='solid', lw=0.5, marker=None)
