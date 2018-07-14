@@ -9,7 +9,7 @@ import praw
 import config
 
 def main():
-    print("STARTING")
+    print("timestamp\tid\tcreated_utc\tups\tscore")
 
     reddit = praw.Reddit(
         client_id=config.client_id,
